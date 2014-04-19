@@ -14,11 +14,18 @@ fi
 # all of our zsh files
 typeset -U config_files
 config_files=($ZSH/**/*.zsh)
+config_files=(${config_files:#*/zsh/plugins/*})
 
 # load the path files
 for file in ${(M)config_files:#*/path.zsh}
 do
   source $file
+done
+
+# load the zsh plugins (3rd party)
+for file in $(ls $ZSH/zsh/plugins/**/install_plugin.zsh)
+do
+  source $file $file $(dirname $file)
 done
 
 # load everything but the path and completion files
