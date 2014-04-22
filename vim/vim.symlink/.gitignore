@@ -1,0 +1,5 @@
+*.swp
+vimtips.txt
+.netrwhist
+vimtips.txt.bak
+bundle/ccase/doc/tags
