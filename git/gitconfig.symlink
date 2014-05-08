@@ -1,0 +1,58 @@
+[core]
+  trustctime = false
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+  pager = less -+S
+
+[merge]
+   tool = vimdiff
+;  tool = kdiff3
+
+[mergetool "kdiff3"]
+;  path = C:\\Program Files\\KDiff3\\kdiff3.exe
+
+[receive]
+  denyCurrentBranch = warn
+
+[branch]
+  autosetuprebase = local
+
+[color]
+  ui = auto
+  diff = auto
+  grep = auto
+  branch = auto
+  showbranch = auto
+  status = auto
+
+[color "diff"]
+  plain = normal dim
+  meta = yellow dim
+  frag = blue bold
+  old = magenta
+  new = cyan
+  whitespace = red reverse
+
+[color "status"]
+  header = normal dim
+  added = yellow
+  untracked = magenta
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = red
+
+[alias]
+  ss = status -s
+  ls = ls-files
+  ll = "!git --no-pager log --oneline  --all -15"
+  lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+  lg = !"git lg1"
+[http]
+  proxy = http://localhost:3128
+[push]
+  default = simple
