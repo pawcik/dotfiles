@@ -7,3 +7,6 @@
 [submodule "prompt/liquidprompt"]
 	path = prompt/liquidprompt
 	url = https://github.com/nojhan/liquidprompt.git
+[submodule "zsh/plugins/zsh-syntax_zsh-history-substring-search/zsh-history-substring-search"]
+	path = zsh/plugins/zsh-syntax_zsh-history-substring-search/zsh-history-substring-search
+	url = https://github.com/zsh-users/zsh-history-substring-search
