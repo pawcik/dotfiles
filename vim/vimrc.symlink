@@ -28,6 +28,7 @@
   Bundle 'gcmt/wildfire.vim'
   "base16 colorscheme
   Bundle 'chriskempson/base16-vim'
+  Bundle 'vim-scripts/BufOnly.vim'
         
   filetype plugin indent on       " enable detection, plugins and indenting in one step
 
