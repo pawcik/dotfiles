@@ -3,6 +3,10 @@
 ssh = ssh -C
 
 [extensions]
+# git like stash command
+shelve=
+# git like git commit --patch
+record=
 # enable color extension
 color =
 # enable extdiff extension (Extended Diff)
@@ -10,17 +14,27 @@ hgext.extdiff =
 
 pager = 
 
+# remove changest from history
+strip = 
+
+extdiff = 
+
+purge = 
+
+rebase = 
+
 [pager]
 pager = LESS='FRX' less
+attend = annotate, cat, diff, export, glog, log, qdiff, wdiff
  
 [extdiff]
 # configure extended diff to use colordiff (requires colordiff installed in your system)
-cmd.cdiff = colordiff
-opts.cdiff = -uprN
+cmd.wdiff = cwdiff
+opts.wdiff = --diff --ab
  
 [color]
 # configure colors for each possible hg status
-status.modified = blue bold
+status.modified = magenta
 status.added = green bold
 status.removed = red bold
 status.deleted = cyan bold
@@ -40,3 +54,15 @@ diff.trailingwhitespace = bold red_background
 [defaults]
 # suppress noisy extdiff header message
 cdiff = -q
+
+[alias]
+
+ss = status
+ll = log --limit 10 --template '{rev}:{node|short} | {date|isodatesec} | {author|user}: {desc|strip|firstline}\n'
+llg = log --graph --limit 10 --template '{rev}:{node|short} | {date|isodatesec} | {author|user}: {desc|strip|firstline}\n'
+
+[merge-tools]
+filemerge.executable = opendiff-w
+filemerge.args = $local $other -ancestor $base -merge $output
+
+

@@ -29,6 +29,7 @@
   "base16 colorscheme
   Bundle 'chriskempson/base16-vim'
   Bundle 'vim-scripts/BufOnly.vim'
+  Bundle 'MultipleSearch'
         
   filetype plugin indent on       " enable detection, plugins and indenting in one step
 
@@ -100,7 +101,7 @@
   " Remap j and k to act as expected when used on long, wrapped, lines
   nnoremap j gj
   nnoremap k gk
-  nnoremap R "_d
+  " nnoremap R "_d
 
   " to set lines 47 to remove bottom border for my dell
   map sl :set lines=47
@@ -338,9 +339,10 @@ endif
     elseif has("x11")
       " Also for GTK 1
       "set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
+    elseif has("mac")
+      set guifont=Menlo\ Regular:h13
     elseif has("gui_win32")
       set guifont=DejaVu_LGC_Sans_Mono:h10:cANSI
-
     endif
 
   endif

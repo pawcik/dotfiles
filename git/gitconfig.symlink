@@ -5,6 +5,7 @@
   interactive = auto
   status = auto
   pager = less -+S
+	excludesfile = /Users/pawcik/.gitignore_global
 
 [merge]
    tool = vimdiff
@@ -48,7 +49,8 @@
 [alias]
   ss = status -s
   ls = ls-files
-  ll = "!git --no-pager log --oneline  --all -15"
+  ll = "!git --no-pager log --oneline --all -15"
+  ;ll = "!git --no-pager log --onelinepretty=\"%h %an:%s\" --all -15"
   lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
   lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
   lg = !"git lg1"
