@@ -320,6 +320,13 @@ defaults write com.apple.terminal StringEncodings -array 4
 #hash tmutil &> /dev/null && sudo tmutil disablelocal
 
 ###############################################################################
+# Custom shortcuts                                                            #
+###############################################################################
+
+#replace deafult command-q with Ctrl-command-q shortcut
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Quit Google Chrome" "@^q"
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
