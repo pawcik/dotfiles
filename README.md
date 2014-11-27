@@ -7,8 +7,9 @@ Main dotfiles (based on [Zach Holman's dotfiles](https://github.com/holman/dotfi
 Run this:
 
 ```sh
-git clone https://github.com/holman/dotfiles.git ~/.dotfiles
+git clone https://github.com/pawcik/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
+git submodule update --init --recursive
 script/bootstrap
 ```
 
