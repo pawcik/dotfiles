@@ -1,9 +1,12 @@
 #!/bin/bash
+read -p "Are you sure? [y/N] " -r
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  ignore=""
 
-ignore=""
+  for fignore in "$@"; do
+    ignore=${ignore}"-not -name ${fignore} "
+  done
 
-for fignore in "$@"; do
-  ignore=${ignore}"-not -name ${fignore} "
-done
-
-find . $ignore -delete
+  find . $ignore -delete
+fi

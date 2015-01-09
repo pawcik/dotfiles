@@ -67,6 +67,8 @@
   set encoding=utf-8
 
   color xoria256
+  " clear SignColumn (same as line number column)
+  highlight clear SignColumn
   "set background=dark
   "color solarized
   "highlight current line
@@ -197,7 +199,7 @@
 " Plugins settings {{{
   " Plugin: ctrl-p
   let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v(\f[\/](bin|target))$|(\.(git|hg|svn))$|(node_modules)$',
+    \ 'dir': '\v(\f[\/](bin|target|build))$|(\.(git|hg|svn))$|(node_modules)$',
     \ 'file': '\v\.(exe|so|dll)$',
     \ }
   " }}}
