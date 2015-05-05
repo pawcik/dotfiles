@@ -1,3 +1,16 @@
+# overload the zsh export to set variable via launchctl
+#function export()
+#{
+    #builtin export "$@"
+    #if [[ ${#@} -eq 1 && "${@//[^=]/}" ]]
+    #then
+        #launchctl setenv "${@%%=*}" "${@#*=}"
+    #elif [[ ! "${@//[^ ]/}" ]]
+    #then
+        #launchctl setenv "${@}" "${!@}"
+    #fi
+#}
+
 export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
 # shortcut to this dotfiles path is $ZSH

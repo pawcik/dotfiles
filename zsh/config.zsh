@@ -37,3 +37,13 @@ setopt HIST_REDUCE_BLANKS
 # don't expand aliases _before_ completion has finished
 #   like: git comm-[tab]
 setopt complete_aliases
+
+# enable edit command in $EDITOR
+autoload -z edit-command-line
+zle -N edit-command-line
+
+#use vim key map scheme
+bindkey -v
+#<ESC>+v edit command in $EDITOR
+bindkey -M vicmd v edit-command-line
+
