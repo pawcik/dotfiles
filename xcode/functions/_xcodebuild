@@ -1,0 +1,51 @@
+#compdef xcodebuild
+
+# zsh completions for 'xcodebuild'
+# automatically generated with http://github.com/RobSis/zsh-completion-generator
+local arguments
+
+arguments=(
+    '-usage[print brief usage]'
+    '-help[print complete usage]'
+    '-verbose[provide additional status output]'
+    '-license[show the Xcode and SDK license agreements]'
+    '-checkFirstLaunchStatus[Check if any First Launch tasks need to be performed]'
+    '-project[build the project NAME]'
+    '-target[build the target NAME]'
+    '-alltargets[build all targets]'
+    '-workspace[build the workspace NAME]'
+    '-scheme[build the scheme NAME]'
+    '-configuration[use the build configuration NAME for building each target]'
+    '-xcconfig[apply the build settings defined in the file at PATH as overrides]'
+    '-arch[build each target for the architecture ARCH; this will override architectures defined in the project]'
+    '-sdk[use SDK as the name or path of the base SDK when building the project]'
+    '-toolchain[use the toolchain with identifier or name NAME]'
+    '-destination[use the destination described by DESTINATIONSPECIFIER (a comma-separated set of key=value pairs describing the destination to use)]'
+    '-destination-timeout[wait for TIMEOUT seconds while searching for the destination device]'
+    '-parallelizeTargets[build independent targets in parallel]'
+    '-jobs[specify the maximum number of concurrent build operations]'
+    '-dry-run[do everything except actually running the commands]'
+    '-showsdks[display a compact list of the installed SDKs]'
+    '-showBuildSettings[display a list of build settings and values]'
+    '-list[lists the targets and configurations in a project, or the schemes in a workspace]'
+    '-find-executable[display the full path to executable NAME in the provided SDK and toolchain]'
+    '-find-library[display the full path to library NAME in the provided SDK and toolchain]'
+    '-version[display the version of Xcode; with -sdk will display info about one or all installed SDKs]'
+    '-resultBundlePath[specifies the directory where a result bundle describing what occurred will be placed]'
+    '-derivedDataPath[specifies the directory where build products and other derived data will go]'
+    '-archivePath[specifies the directory where any created archives will be placed, or the archive that should be exported]'
+    '-exportArchive[specifies that an archive should be exported]'
+    '-exportFormat[specifies the format that the archive should be exported as (e.g. ipa, pkg, app)]'
+    '-exportPath[specifies the destination for the product exported from an archive]'
+    '-exportProvisioningProfile[NAME   specifies the provisioning profile that should be used when re-signing the exported archive; if possible, implies a signing identity]'
+    '-exportSigningIdentity[NAME      specifies the codesigning identity that should be used to re-sign the exported archive]'
+    '-exportInstallerIdentity[NAME    specifies the installer signing identity that should be used during export; this may be inferable from -exportSigningIdentity]'
+    '-exportWithOriginalSigningIdentity[specifies that the signing identity used to create the archive should be used to sign the exported product]'
+    '-skipUnavailableActions[specifies that scheme actions that cannot be performed should be skipped instead of causing a failure]'
+    '-exportLocalizations[exports completed and outstanding project localizations]'
+    '-localizationPath[specifies a path to XLIFF localization files]'
+    '-exportLanguage[specifies optional ISO 639-1 target languages included in a localization export]'
+    '*:filename:_files'
+)
+
+_arguments -s $arguments

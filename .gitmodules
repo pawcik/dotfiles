@@ -10,3 +10,6 @@
 [submodule "zsh/plugins/zsh-syntax_zsh-history-substring-search/zsh-history-substring-search"]
 	path = zsh/plugins/zsh-syntax_zsh-history-substring-search/zsh-history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search
+[submodule "zsh/plugins/zsh-completion-generator/source"]
+	path = zsh/plugins/zsh-completion-generator/source
+	url = https://github.com/RobSis/zsh-completion-generator.git
