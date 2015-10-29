@@ -49,10 +49,11 @@
 [alias]
   ss = status -s
   ls = ls-files
-  ll = "!git log --format=format:'%C(dim yellow)%h %C(dim green)(%<(10,trunc)%ar) %C(white)%s %C(reset)(%an)' --all -15"
-  lld = "!git log --format=format:'%C(dim yellow)%h %C(dim green)(%<(10,trunc)%ar) %C(white)%s %C(reset)(%an)' --all --since=1.day"
-  llg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(auto)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
-  lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(auto)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all -15
+  l = log --graph --oneline --decorate -15
+  la = log --graph --oneline --decorate -15 --all
+  ll = log --graph --oneline --decorate 
+  llg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(auto)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(auto)- %an%C(reset)%C(auto)%d%C(reset)'
+  lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(auto)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(auto)- %an%C(reset)%C(auto)%d%C(reset)' --all -15
   llg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
   lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all -15
   ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
