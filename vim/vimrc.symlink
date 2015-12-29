@@ -31,6 +31,8 @@
   Bundle 'vim-scripts/BufOnly.vim'
   Bundle 'MultipleSearch'
   Bundle 'scrooloose/syntastic'
+  Plugin 'AnsiEsc.vim'
+  Plugin 'fatih/vim-go'
         
   filetype plugin indent on       " enable detection, plugins and indenting in one step
 
@@ -61,6 +63,8 @@
   set incsearch "Find when typing
   set hlsearch
   set noswapfile
+
+  set iskeyword +=- "treat '-' as part of word 
 
   "to open files only in unix format, for windows display ^M for endlines
   set fileformats=unix
@@ -299,6 +303,12 @@ if has("autocmd")
 
 endif
 "}
+
+" Go {{{
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+" }}}
+
 " StatusLine {
   set laststatus=2                          "to be sure status linse is visible
   " Plugin: airline
@@ -359,3 +369,24 @@ endif
   "highlight SpecialKey guifg=#4a4a59
 
   "}}}
+
+function! Incr()
+  let a = line('.') - line("'<")
+  let c = virtcol("'<")
+  if a > 0
+    execute 'normal! '.c.'|'.a."\<C-a>"
+  endif
+  normal `<
+endfunction
+vnoremap <C-i> :call Incr()<CR>
+
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set ft=%s :",
+        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no', &filetype)
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>

@@ -1,0 +1,85 @@
+#!/usr/bin/env zsh
+
+reviewers=(\
+  example@example.com)
+
+DRY="" # do not execute command only print
+
+
+die() {
+  echo "$1"
+  exit 1
+}
+
+_parse_args () {
+  while [[ $# > 0 ]]
+  do
+    key="$1"
+    case $key in
+      -d|--dry-run)
+        DRY=YES
+        ;;
+      -s|--searchpath)
+        SEARCHPATH="$2"
+        shift # past argument
+        ;;
+      -l|--lib)
+        LIBPATH="$2"
+        shift # past argument
+        ;;
+      -r|--reviewers)
+        reviewers="$2"
+        if [[ $reviewers != "" ]]; then 
+          shift # past argument
+        fi
+        ;;
+      --default)
+        DEFAULT=YES
+        ;;
+      *)
+        echo "unkown option $1"
+        ;;
+    esac
+    shift # past argument or value
+  done
+}
+
+
+
+_reviewers () {
+  rev="%"
+  for r ($reviewers) {
+    rev=${rev}r=$r,
+  }
+  echo $rev
+}
+
+_git () {
+  if [[ ! -z $DRY ]]; then
+    echo "> git $@" 
+  else 
+    git $@
+  fi
+
+}
+
+_remote_branch_exist() {
+  for b ($(git branch -r)) {
+    if [[ $b == "origin/$1" ]];then
+      return 0
+    fi
+  }
+  return 1
+}
+
+_parse_args $@
+
+current_branch=$(git name-rev --name-only HEAD)
+_remote_branch_exist "${current_branch}" || ( echo "branch ${current_branch} do not exist! will create" && _git push origin origin/development:refs/heads/${current_branch})
+[[ $? = 0 ]] ||  die "Cannot create remote branch"
+
+
+_git push origin HEAD:refs/for/${current_branch}/$(_reviewers)
+
+
+# vim: set ts=2 sw=2 tw=0 et ft=sh :

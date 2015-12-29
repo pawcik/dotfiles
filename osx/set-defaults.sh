@@ -4,6 +4,9 @@
 # General UI/UX                                                               #
 ###############################################################################
 
+# Disabe startup chime
+sudo nvram SystemAudioVolume=%00
+
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 

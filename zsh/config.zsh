@@ -1,5 +1,6 @@
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
+export EDITOR=vim
 
 #fpath=($ZSH/zsh/functions $fpath)
 

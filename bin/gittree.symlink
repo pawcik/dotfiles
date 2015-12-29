@@ -1,0 +1,20 @@
+#!/bin/bash
+function git_tree {
+  while read data; do
+    if [[ $data =~ ─ ]]; then
+      file=${data##*─ }
+      if [[ ! -d $file ]]; then
+        decoration=${data% *}
+        git_status=$(git -c color.status=always status -s "${file}")
+        if [[ $git_status = "" ]]; then
+          git_status="   "
+        fi
+        echo "${decoration} [${git_status% *}] ${file}"
+      else
+        echo "${decoration} [dir] ${file}"
+      fi
+    fi
+  done
+}
+
+git_tree
