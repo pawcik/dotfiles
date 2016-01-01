@@ -1,3 +1,4 @@
 CWD=$(dirname $0)
-GENCOMPL_FPATH=$(mktemp -d /tmp/autogen-completion.XXXXX)
+GENCOMPL_FPATH=$HOME/.zsh/complete-generator
+mkdir -p $GENCOMPL_FPATH
 source $CWD/source/zsh-completion-generator.plugin.zsh
