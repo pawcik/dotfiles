@@ -1,7 +1,12 @@
 #!/usr/bin/env zsh
 
-reviewers=(\
-  example@example.com)
+#empty array by default
+reviewers=()
+
+reviewers_path="$(git rev-parse --show-toplevel)/.gerrit-reviewers"
+if [[ -e $reviewers_path ]]; then
+  reviewers=($(cat $reviewers_path));
+fi
 
 DRY="" # do not execute command only print
 
