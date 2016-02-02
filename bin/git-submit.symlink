@@ -9,6 +9,8 @@ if [[ -e $reviewers_path ]]; then
 fi
 
 DRY="" # do not execute command only print
+#be default submit as normal patch
+PATCH_MODE="for"
 
 
 die() {
@@ -24,22 +26,14 @@ _parse_args () {
       -d|--dry-run)
         DRY=YES
         ;;
-      -s|--searchpath)
-        SEARCHPATH="$2"
-        shift # past argument
-        ;;
-      -l|--lib)
-        LIBPATH="$2"
-        shift # past argument
-        ;;
       -r|--reviewers)
         reviewers="$2"
         if [[ $reviewers != "" ]]; then 
           shift # past argument
         fi
         ;;
-      --default)
-        DEFAULT=YES
+      --draft)
+        PATCH_MODE="drafts"
         ;;
       *)
         echo "unkown option $1"
@@ -84,7 +78,7 @@ _remote_branch_exist "${current_branch}" || ( echo "branch ${current_branch} do 
 [[ $? = 0 ]] ||  die "Cannot create remote branch"
 
 
-_git push origin HEAD:refs/for/${current_branch}/$(_reviewers)
+_git push origin HEAD:refs/${PATCH_MODE}/${current_branch}/$(_reviewers)
 
 
 # vim: set ts=2 sw=2 tw=0 et ft=sh :
