@@ -80,7 +80,7 @@ _remote_branch_exist() {
 _parse_args $@
 
 current_branch=$(git name-rev --name-only HEAD)
-_remote_branch_exist "${current_branch}" || ( echo "branch ${current_branch} do not exist! will create" && _git push origin origin/development:refs/heads/${current_branch})
+_remote_branch_exist "${current_branch}" || ( echo "branch ${current_branch} do not exist! will create" && _git push origin HEAD:refs/heads/${current_branch})
 [[ $? = 0 ]] ||  die "Cannot create remote branch"
 
 
