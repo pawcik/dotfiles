@@ -73,10 +73,16 @@ _remote_branch_exist() {
 
 _parse_args $@
 
-current_branch=$(git name-rev --name-only HEAD)
-_remote_branch_exist "${current_branch}" || ( echo "branch ${current_branch} do not exist! will create" && _git push origin HEAD:refs/heads/${current_branch})
-[[ $? = 0 ]] ||  die "Cannot create remote branch"
-
+if ! detached_head=$(git symbolic-ref HEAD 2>/dev/null); then
+  vared -p 'Detached head. Enter remote branch [master]: ' -c current_branch
+  if [[ $current_branch == "" ]]; then
+    current_branch="master"
+  fi
+else
+  current_branch=$(git name-rev --name-only HEAD)
+  _remote_branch_exist "${current_branch}" || ( echo "branch ${current_branch} do not exist! will create" && _git push origin HEAD:refs/heads/${current_branch})
+  [[ $? = 0 ]] ||  die "Cannot create remote branch"
+fi
 
 _git push origin HEAD:refs/${PATCH_MODE}/${current_branch}/$(_reviewers)
 
