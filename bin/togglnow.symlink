@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+toggl_now="/tmp/toggl_now.log"
+if [[ ! -f ${toggl_now} ||  ! $(find $toggl_now -mtime -60s) ]]; then
+  toggl now | tee ${toggl_now}
+else
+  cat ${toggl_now}
+fi

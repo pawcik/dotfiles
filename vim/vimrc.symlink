@@ -33,6 +33,11 @@
   Bundle 'scrooloose/syntastic'
   Plugin 'AnsiEsc.vim'
   Plugin 'fatih/vim-go'
+  Plugin 'kylef/apiblueprint.vim'
+  " run tmux command from vim
+  Plugin 'benmills/vimux'
+  " vim an tmux navigation using same keys
+  Plugin 'christoomey/vim-tmux-navigator'
         
   filetype plugin indent on       " enable detection, plugins and indenting in one step
 
