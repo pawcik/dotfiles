@@ -1,5 +1,8 @@
 #set -g default-command "login-shell"
 
+# fix for os Sierra (10.12) access to clipboard
+set-option -g default-command "reattach-to-user-namespace -l zsh"
+
 # tmux display things in 256 colors
 #set -g default-terminal "tmux-256color-italic"
 
