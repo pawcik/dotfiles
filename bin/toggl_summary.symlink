@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+toggl_now="/tmp/toggl_summary.log"
+if [[ ! -f ${toggl_now} ||  ! $(find $toggl_now -mtime -60s) ]]; then
+  toggl ls | tail -1 | tr -d ' ' | tee ${toggl_now}
+else
+  cat ${toggl_now}
+fi
