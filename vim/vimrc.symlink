@@ -38,6 +38,8 @@
   Plugin 'benmills/vimux'
   " vim an tmux navigation using same keys
   Plugin 'christoomey/vim-tmux-navigator'
+  " colorscheme
+  Plugin 'morhetz/gruvbox'
         
   filetype plugin indent on       " enable detection, plugins and indenting in one step
 
@@ -47,6 +49,10 @@
       let $VIMHOME = $HOME."\\vimfiles"
   else
       let $VIMHOME = $HOME."/.vim"
+  endif
+
+  if has('nvim')
+    set termguicolors
   endif
   "let $VIMHOME=expand('<sfile>:p:h')
 
@@ -74,12 +80,12 @@
   "to open files only in unix format, for windows display ^M for endlines
   set fileformats=unix
 
-  set encoding=utf-8
+  " set encoding=utf-8
 
-  color xoria256
+  colorscheme gruvbox
+  set background=dark
   " clear SignColumn (same as line number column)
   highlight clear SignColumn
-  "set background=dark
   "color solarized
   "highlight current line
   "set cursorline
@@ -109,14 +115,16 @@
   " Quickly close the current window
   nnoremap <leader>q :q<CR>
   map <silent> <t_133>9 :Commant<CR>
+  " call help with word under cursor
+  noremap <leader>h :help <c-r><c-w><cr>
+  " run vim command from curosr till end of line
+  noremap <leader>ru y$:<c-r>" <cr>
 
   " Remap j and k to act as expected when used on long, wrapped, lines
   nnoremap j gj
   nnoremap k gk
   " nnoremap R "_d
 
-  " to set lines 47 to remove bottom border for my dell
-  map sl :set lines=47
   nmap <leader>rr :call MyReloadSnippets(snippets_dir, &filetype)<CR>
 
   " Use ,d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
@@ -148,7 +156,11 @@
   " to close html tag
   iabbrev <// </<C-X><C-O>
 
-  "
+
+" Plugin: vimux
+  nnoremap <Leader>vl :VimuxRunLastCommand<CR>
+  nnoremap <Leader>vs :VimuxRunCommand(@%)<CR>
+
 " Plugin: unimpaired
   if exists("g:loaded_unimpaired") || &cp || v:version < 700
   " Bubble single lines
@@ -171,8 +183,8 @@
   " Plugin: NERDTree
   nnoremap <silent> <F9> :NERDTreeToggle<CR>
   " Edit the vimrc file
-  nmap <silent> <leader>ev :tabnew $MYVIMRC<CR>
-  nmap <silent> <leader>sv :so $MYVIMRC<CR>
+  nnoremap <silent> <leader>ev :tabnew $MYVIMRC<CR>
+  nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
 
 
   " Enter to edited file's directory
@@ -199,17 +211,10 @@
 "------------------------------------------
 " Omnicompletion
 "------------------------------------------
-"JAVA
-  if has("autocmd")
-	  autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-	endif
-
-
-
 " Plugins settings {{{
   " Plugin: ctrl-p
   let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v(\f[\/](bin|target|build))$|(\.(git|hg|svn))$|(node_modules)$',
+    \ 'dir': '\v(\f[\/](bin|target|build))$|(\.(git|hg|svn))$|(node_modules|classes)$',
     \ 'file': '\v\.(exe|so|dll)$',
     \ }
   " }}}
@@ -257,7 +262,8 @@
 " }}}
 
 "AutoCommand  {
-if has("autocmd")
+augroup file-types
+    autocmd!
     " Restore cursor position
     au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
@@ -281,6 +287,8 @@ if has("autocmd")
     "python
     autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType python set foldmethod=indent
+
+	  autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
     " Treat .rss files as XML
     autocmd BufNewFile,BufRead *.rss setfiletype xml
@@ -306,8 +314,7 @@ if has("autocmd")
     "au BufNewFile,BufRead  modprobe.conf    set syntax=modconf
     
 
-endif
-"}
+augroup END
 
 " Go {{{
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
