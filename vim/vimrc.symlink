@@ -40,6 +40,7 @@
   Plugin 'christoomey/vim-tmux-navigator'
   " colorscheme
   Plugin 'morhetz/gruvbox'
+  Plugin 'godlygeek/tabular'
         
   filetype plugin indent on       " enable detection, plugins and indenting in one step
 
@@ -168,7 +169,7 @@
 
 " Plugin: vimux
   nnoremap <Leader>vl :VimuxRunLastCommand<CR>
-  nnoremap <Leader>vs :VimuxRunCommand(@%)<CR>
+  nnoremap <Leader>vs :VimuxRunCommand(expand('%:p'))<CR>
 
 " Plugin: unimpaired
   if exists("g:loaded_unimpaired") || &cp || v:version < 700
@@ -192,7 +193,7 @@
   " Plugin: NERDTree
   nnoremap <silent> <F9> :NERDTreeToggle<CR>
   " Edit the vimrc file
-  nnoremap <silent> <leader>ev :tabnew $MYVIMRC<CR>
+  nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
   nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
 
 
