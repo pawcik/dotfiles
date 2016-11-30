@@ -3,48 +3,51 @@
 " This must be first, because it changes other options as a side effect.
   set nocompatible
 
-  filetype off                    " force reloading *after* pathogen loaded
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
+  if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+   " autocmd VimEnter * PlugInstall | source $MYVIMRC
+  endif
 
-  Bundle 'gmarik/vundle'
-  Bundle 'scrooloose/nerdcommenter'
-  Bundle 'ervandew/supertab'
-  Bundle 'nelstrom/vim-mac-classic-theme'
-  Bundle 'tpope/vim-unimpaired'
-  Bundle 'msanders/snipmate.vim'
-  Bundle 'kien/ctrlp.vim'
-  Bundle 'altercation/vim-colors-solarized'
-  Bundle 'derekwyatt/vim-scala'
-  Bundle 'chrisbra/csv.vim'
-  Bundle 'vimwiki'
-  Bundle 'airblade/vim-gitgutter'
-  Bundle 'tpope/vim-fugitive'
-  Bundle 'plasticboy/vim-markdown'
-  Bundle 'bling/vim-airline'
-  Bundle 'takac/vim-fontmanager'
-  Bundle 'tpope/vim-jdaddy'
+
+  call plug#begin('~/.vim/plugged')
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'ervandew/supertab'
+  Plug 'nelstrom/vim-mac-classic-theme'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'msanders/snipmate.vim'
+  Plug 'kien/ctrlp.vim'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'derekwyatt/vim-scala'
+  Plug 'chrisbra/csv.vim'
+  Plug 'vimwiki'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'tpope/vim-fugitive'
+  Plug 'plasticboy/vim-markdown'
+  Plug 'bling/vim-airline'
+  Plug 'takac/vim-fontmanager'
+  Plug 'tpope/vim-jdaddy'
   "select the closest text objects
-  Bundle 'gcmt/wildfire.vim'
+  Plug 'gcmt/wildfire.vim'
   "base16 colorscheme
-  Bundle 'chriskempson/base16-vim'
-  Bundle 'vim-scripts/BufOnly.vim'
-  Bundle 'MultipleSearch'
-  Bundle 'scrooloose/syntastic'
-  Plugin 'AnsiEsc.vim'
-  Plugin 'fatih/vim-go'
-  Plugin 'kylef/apiblueprint.vim'
+  Plug 'chriskempson/base16-vim'
+  Plug 'vim-scripts/BufOnly.vim'
+  Plug 'MultipleSearch'
+  Plug 'scrooloose/syntastic'
+  Plug 'AnsiEsc.vim'
+  Plug 'fatih/vim-go'
+  Plug 'kylef/apiblueprint.vim'
   " run tmux command from vim
-  Plugin 'benmills/vimux'
+  Plug 'benmills/vimux'
   " vim an tmux navigation using same keys
-  Plugin 'christoomey/vim-tmux-navigator'
+  Plug 'christoomey/vim-tmux-navigator'
   " colorscheme
-  Plugin 'morhetz/gruvbox'
-  Plugin 'godlygeek/tabular'
+  Plug 'morhetz/gruvbox'
+  Plug 'godlygeek/tabular'
+  call plug#end()
         
-  filetype plugin indent on       " enable detection, plugins and indenting in one step
-
   let mapleader=","
+
   "VIM home to 
   if has('win32') || has ('win64')
       let $VIMHOME = $HOME."\\vimfiles"
