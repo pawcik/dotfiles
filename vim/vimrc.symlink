@@ -39,6 +39,8 @@
   Plug 'kylef/apiblueprint.vim'
   " run tmux command from vim
   Plug 'benmills/vimux'
+  " text
+  Plug 'rhysd/vim-grammarous'  " Grammar check using languagetool
   " vim an tmux navigation using same keys
   Plug 'christoomey/vim-tmux-navigator'
   " colorscheme
