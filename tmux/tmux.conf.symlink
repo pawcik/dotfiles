@@ -1,7 +1,9 @@
 #set -g default-command "login-shell"
 
 # fix for os Sierra (10.12) access to clipboard
-set-option -g default-command "reattach-to-user-namespace -l zsh"
+# not needed for tmux > 2.6 https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/issues/66
+#set-option -g default-command "reattach-to-user-namespace -l zsh"
+
 # enable 24bit colors since tmux >= 2.2
 # more info: https://sunaku.github.io/tmux-24bit-color.html#usage
 set-option -ga terminal-overrides ",xterm-256color:Tc"
@@ -67,6 +69,7 @@ bind r source-file ~/.tmux.conf \; display "Config Reloaded!"
 # quickly open a new window
 bind N new-window
 bind c new-window -c '#{pane_current_path}' # Create new window
+bind k confirm kill-window
 
 # split window and fix path for tmux 1.9
 bind | split-window -h -c "#{pane_current_path}"
@@ -105,13 +108,13 @@ setw -g mouse on
 # set-option -g -q mouse on
 
 bind-key -T root PPage if-shell -F "#{alternate_on}" "send-keys PPage" "copy-mode -e; send-keys PPage"
-bind-key -t vi-copy PPage page-up
-bind-key -t vi-copy NPage page-down
+bind-key -T copy-mode-vi PPage send-keys -X page-up
+bind-key -T copu-mode-vi NPage send-keys -X page-down
 
 bind -T root WheelUpPane if-shell -F -t = "#{alternate_on}" "select-pane -t =; send-keys -M" "select-pane -t =; copy-mode -e; send-keys -M"
 bind -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "select-pane -t =; send-keys -M" "select-pane -t =; send-keys -M"
-bind-key -t vi-copy WheelUpPane halfpage-up
-bind-key -t vi-copy WheelDownPane halfpage-down
+bind-key -T copy-mode-vi WheelUpPane send-keys -X halfpage-up
+bind-key -T copy-mode-vi WheelDownPane send-keys -X halfpage-down
 
 # maximizing and restoring windows
 unbind Up
@@ -126,8 +129,8 @@ unbind [
 bind Escape copy-mode
 unbind p
 bind p paste-buffer
-bind -t vi-copy 'v' begin-selection
-bind -t vi-copy 'y' copy-selection
+bind -T copy-mode-vi 'v' send-keys -X begin-selection
+bind -T copy-mode-vi 'y' send-keys -X copy-selection
 
 # Buffers to/from Mac clipboard, yay tmux book from pragprog
 bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
