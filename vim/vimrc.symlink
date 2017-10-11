@@ -294,7 +294,7 @@ augroup file-types
     autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType mkd setlocal ts=4 sts=4 sw=4 expandtab
-    autocmd FileType javascript setlocal ts=4 sts=4 sw=4 expandtab
+    autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType snippet setlocal ts=2 sts=2 sw=2 noexpandtab
 
     autocmd FileType cccs setlocal cms=#%s 
@@ -334,7 +334,7 @@ augroup END
 
 " Go {{{
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go', 'java'] }
 " }}}
 
 " StatusLine {
