@@ -20,7 +20,7 @@
   Plug 'altercation/vim-colors-solarized'
   Plug 'derekwyatt/vim-scala'
   Plug 'chrisbra/csv.vim'
-  Plug 'vimwiki'
+  Plug 'vim-scripts/vimwiki'
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
   Plug 'plasticboy/vim-markdown'
@@ -32,9 +32,9 @@
   "base16 colorscheme
   Plug 'chriskempson/base16-vim'
   Plug 'vim-scripts/BufOnly.vim'
-  Plug 'MultipleSearch'
+  Plug 'vim-scripts/MultipleSearch'
   Plug 'scrooloose/syntastic'
-  Plug 'AnsiEsc.vim'
+  Plug 'vim-scripts/AnsiEsc.vim'
   Plug 'fatih/vim-go'
   Plug 'kylef/apiblueprint.vim'
   " run tmux command from vim
@@ -47,6 +47,8 @@
   Plug 'morhetz/gruvbox'
   Plug 'godlygeek/tabular'
   Plug 'junegunn/vim-xmark', has('mac') ? { 'do' : 'make'} : { 'on': [] }
+  " vim sugar for the unix sheel commands: :Move, :Mkdir, etc
+  Plug 'tpope/vim-eunuch'
   call plug#end()
         
   let mapleader=","
