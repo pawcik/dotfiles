@@ -49,6 +49,8 @@
   Plug 'junegunn/vim-xmark', has('mac') ? { 'do' : 'make'} : { 'on': [] }
   " vim sugar for the unix sheel commands: :Move, :Mkdir, etc
   Plug 'tpope/vim-eunuch'
+  Plug 'dipem/vim-rest-console'
+  Plug 'mhinz/vim-grepper'
   call plug#end()
         
   let mapleader=","
@@ -311,6 +313,9 @@ augroup file-types
     " Treat .rss files as XML
     autocmd BufNewFile,BufRead *.rss setfiletype xml
 
+    " Treat .curl files as shell
+    autocmd BufNewFile,BufRead *.curl setfiletype sh
+
     " When using mutt, text width=72
     au FileType tex :map <F2> <Esc>:w<CR>:!pdflatex -output-directory output %<CR>
     au FileType tex :map <F3> <Esc>:w<CR>:!pdflatex -output-directory output praca.tex<CR>
@@ -391,7 +396,19 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go', 'java
   endif
   " }
 
+  " vim-rest-plugin
+  let g:vrc_trigger = '<Leader>r'
+  " to force reposne format when content-type is misisng in resp
+  let g:vrc_response_default_content_type = 'application/json'
+  " }
+
   " }}}
+
+  " grepper
+  runtime plugin/grepper.vim
+  let g:grepper.dir = 'repo,filecwd'
+  nmap gs <Plug>(GrepperOperator)
+  xmap gs <Plug>(GrepperOperator)
 
   " TIPS {{{
   "Invisible character colors
@@ -421,6 +438,9 @@ function! AppendModeline()
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
+" Reverse search workd forward and backward of word occurrence of the word
+nnoremap * #
+nnoremap # *
 " Search for selected text, forwards or backwards.
 vnoremap <silent> # :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>

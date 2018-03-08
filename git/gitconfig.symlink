@@ -59,6 +59,7 @@
   ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
   co = checkout
   root = "!git rev-parse --show-toplevel"
+  jira = "!jira() { ticket=$(git symbolic-ref --short HEAD | sed 's/.*\\(AT-[0-9]*\\).*/\\1/') && open \"${JIRA_HOME}/browse/$ticket\" ;}; jira"
   
 [push]
   default = simple
