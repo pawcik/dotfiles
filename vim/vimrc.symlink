@@ -49,7 +49,7 @@
   Plug 'junegunn/vim-xmark', has('mac') ? { 'do' : 'make'} : { 'on': [] }
   " vim sugar for the unix sheel commands: :Move, :Mkdir, etc
   Plug 'tpope/vim-eunuch'
-  Plug 'dipem/vim-rest-console'
+  Plug 'diepm/vim-rest-console'
   Plug 'mhinz/vim-grepper'
   call plug#end()
         
