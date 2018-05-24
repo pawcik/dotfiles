@@ -97,6 +97,9 @@
   "to open files only in unix format, for windows display ^M for endlines
   set fileformats=unix
 
+  "how many milliseconds after last type wait before saving the
+  set updatetime=500
+
   " set encoding=utf-8
 
   let g:gruvbox_guisp_fallback='fg'
@@ -226,6 +229,14 @@
 
   " toggleRainbow
   nmap <leader>R :RainbowParenthsisToggle<CR>
+
+  " edit mapping
+  " ma  - mark position
+  " di" - delete everyting inside "
+  " hP - insert deleted work
+  " xx - remove quota
+  " `a go back to mark
+  nnoremap <leader>s" madi"hPlxx`a
 "}}}
 "
 "------------------------------------------
@@ -278,6 +289,24 @@
     call ResetSnippets(filetype)
     call GetSnippets( g:snippets_dir, filetype )
   endfunction
+
+  " Toggle angualrjs componet js and template file
+  " if current file ends to component.js then it will try open
+  " same file but with template.html in same buffer
+  function! NxAngularJump()
+    let ext = expand('%:e')
+    let fileName = ''
+    if ext == 'js'
+      let fileName = expand('%:s?component.js$?template.html?')
+    else
+      let fileName = expand('%:s?template.html$?component.js?')
+    endif
+    echo fileName
+    execute "e " . fnameescape(fileName)
+  endfunction
+
+  nnoremap <C-s> :call NxAngularJump()<CR>
+
   
 " }}}
 
@@ -350,6 +379,7 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go', 'java
   " show buffers status 
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#buffer_nr_show = 1
+  let g:airline_highlighting_cache = 1
   "set statusline=%f\ %m\ %r\ %=\ [%{&fileencoding}]\ [%{&ff}]\ [ft=%{&ft}]\ Line:%l/%L[%p%%]\ Col:%c\ Buf:%n\ [%b][1x%B]
   " set statusline=%-9F%m%r%h%w\ [F=%{&ff}]\ [TYPE=%Y]\ [ENC=%{&fileencoding}]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\%=[POS=%04l,%04v][%p%%]\ [LEN=%L]
   "  set statusline=
